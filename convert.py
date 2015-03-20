@@ -35,6 +35,11 @@ def do_cangjie():
     codecs.open('chinese_to_cangjie3.js', 'w', encoding='utf8').write('var chinese_to_cangjie3='+chinese_to_cangjie3_json+'\n')
     codecs.open('chinese_to_cangjie5.js', 'w', encoding='utf8').write('var chinese_to_cangjie5='+chinese_to_cangjie5_json+'\n')
 
+def do_jyutping():
+    chinese_to_jyutping = json.loads(codecs.open('cantonese-syllables-characters.json', encoding='utf8').read())
+    chinese_to_jyutping_json = json.dumps(chinese_to_jyutping, ensure_ascii=False)
+    codecs.open('chinese_to_jyutping.js', 'w', encoding='utf8').write('var chinese_to_jyutping='+chinese_to_jyutping_json+'\n')
+
 def do_mandrain():
     chinese_to_mandarin = dict()
     h = codecs.open('Unihan_Readings.txt', 'r', encoding='utf8')
@@ -54,6 +59,7 @@ def do_mandrain():
 
 def main():
     do_cangjie()
+    do_jyutping()
     do_mandrain()
 
 if __name__ == '__main__':
