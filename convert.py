@@ -27,14 +27,14 @@ def do_cangjie():
             for cj in cj5:
                 chinese_to_cangjie5[ch].append(cj)
     h.close()
-    chinese_to_cangjie3_json = json.dumps(chinese_to_cangjie3, ensure_ascii=False)
-    chinese_to_cangjie5_json = json.dumps(chinese_to_cangjie5, ensure_ascii=False)
+    chinese_to_cangjie3_json = json.dumps(chinese_to_cangjie3, ensure_ascii=False, sort_keys=True)
+    chinese_to_cangjie5_json = json.dumps(chinese_to_cangjie5, ensure_ascii=False, sort_keys=True)
     codecs.open('chinese_to_cangjie3.js', 'w', encoding='utf8').write('var chinese_to_cangjie3='+chinese_to_cangjie3_json+'\n')
     codecs.open('chinese_to_cangjie5.js', 'w', encoding='utf8').write('var chinese_to_cangjie5='+chinese_to_cangjie5_json+'\n')
 
 def do_jyutping():
     chinese_to_jyutping = json.loads(codecs.open('cantonese-syllables-characters.json', encoding='utf8').read())
-    chinese_to_jyutping_json = json.dumps(chinese_to_jyutping, ensure_ascii=False)
+    chinese_to_jyutping_json = json.dumps(chinese_to_jyutping, ensure_ascii=False, sort_keys=True)
     codecs.open('chinese_to_jyutping.js', 'w', encoding='utf8').write('var chinese_to_jyutping='+chinese_to_jyutping_json+'\n')
 
 def do_mandrain():
@@ -51,7 +51,7 @@ def do_mandrain():
         mandarin = fields[2].split(':')[1].split(',')
         chinese_to_mandarin[ch] = mandarin
     h.close()
-    chinese_to_mandarin_json = json.dumps(chinese_to_mandarin, ensure_ascii=False)
+    chinese_to_mandarin_json = json.dumps(chinese_to_mandarin, ensure_ascii=False, sort_keys=True)
     codecs.open('chinese_to_mandarin.js', 'w', encoding='utf8').write('var chinese_to_mandarin='+chinese_to_mandarin_json+'\n')
 
 def main():
