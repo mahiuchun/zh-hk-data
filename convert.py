@@ -14,12 +14,9 @@ def do_cangjie():
             continue
         ch = fields[0]
         is_chinese = (int(fields[2]) != 0)
-        in_big5 = (int(fields[3]) != 0)
-        in_hkscs = (int(fields[4]) != 0)
         cj3 = fields[11].split(',')
         cj5 = fields[12].split(',')
-        order = int(fields[14])
-        if not (is_chinese and (in_big5 or in_hkscs)):
+        if not is_chinese:
             continue
         if cj3[0] != 'NA':
             chinese_to_cangjie3[ch] = list()
