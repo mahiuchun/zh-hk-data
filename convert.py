@@ -28,15 +28,33 @@ def do_cangjie():
         if cj5[0] != 'NA':
             chinese_to_cangjie5[ch] = list()
             for cj in cj5:
-                chinese_to_cangjie5[ch].append(cj)           
+                chinese_to_cangjie5[ch].append(cj)
     h.close()
     chinese_to_cangjie3_json = json.dumps(chinese_to_cangjie3, ensure_ascii=False)
     chinese_to_cangjie5_json = json.dumps(chinese_to_cangjie5, ensure_ascii=False)
     codecs.open('chinese_to_cangjie3.js', 'w', encoding='utf8').write('var chinese_to_cangjie3='+chinese_to_cangjie3_json+'\n')
     codecs.open('chinese_to_cangjie5.js', 'w', encoding='utf8').write('var chinese_to_cangjie5='+chinese_to_cangjie5_json+'\n')
 
+def do_mandrain():
+    chinese_to_mandarin = dict()
+    h = codecs.open('Unihan_Readings.txt', 'r', encoding='utf8')
+    for line in h:
+        line = line.strip()
+        if not line or line.startswith('#'):
+            continue
+        fields = line.split()
+        if fields[1] != 'kHanyuPinyin':
+            continue
+        ch = unichr(int('0x'+fields[0][2:], 16))
+        mandarin = fields[2].split(':')[1].split(',')
+        chinese_to_mandarin[ch] = mandarin
+    h.close()
+    chinese_to_mandarin_json = json.dumps(chinese_to_mandarin, ensure_ascii=False)
+    codecs.open('chinese_to_mandarin.js', 'w', encoding='utf8').write('var chinese_to_mandarin='+chinese_to_mandarin_json+'\n')
+
 def main():
     do_cangjie()
+    do_mandrain()
 
 if __name__ == '__main__':
     main()
