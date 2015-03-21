@@ -52,8 +52,10 @@ def do_mandrain():
         if cp > sys.maxunicode:
             continue
         ch = unichr(cp)
-        mandarin = fields[2].split()
-        chinese_to_mandarin[ch] = mandarin
+        if ch not in chinese_to_mandarin:
+            chinese_to_mandarin[ch] = list()
+        for read in fields[2:]:
+            chinese_to_mandarin[ch].append(read)
     h.close()
     chinese_to_mandarin_json = json.dumps(chinese_to_mandarin, ensure_ascii=False, sort_keys=True)
     codecs.open('chinese_to_mandarin.js', 'w', encoding='utf8').write('var chinese_to_mandarin='+chinese_to_mandarin_json+'\n')
@@ -72,21 +74,23 @@ def do_variants():
             continue
         ch = unichr(cp)
         if fields[1] == 'kTraditionalVariant':
-            cp = int('0x'+fields[2][2:], 16)
-            if cp > sys.maxunicode:
-                continue
-            trad = unichr(cp)
-            if ch not in chinese_to_traditional:
-                chinese_to_traditional[ch] = list()
-            chinese_to_traditional[ch].append(trad)
+            for vari in fields[2:]:
+                cp = int('0x'+vari[2:], 16)
+                if cp > sys.maxunicode:
+                    continue
+                trad = unichr(cp)
+                if ch not in chinese_to_traditional:
+                    chinese_to_traditional[ch] = list()
+                chinese_to_traditional[ch].append(trad)
         elif fields[1] == 'kSimplifiedVariant':
-            cp = int('0x'+fields[2][2:], 16)
-            if cp > sys.maxunicode:
-                continue
-            simp = unichr(cp)
-            if ch not in chinese_to_simplified:
-                chinese_to_simplified[ch] = list()
-            chinese_to_simplified[ch].append(simp)
+            for vari in fields[2:]:
+                cp = int('0x'+vari[2:], 16)
+                if cp > sys.maxunicode:
+                    continue
+                simp = unichr(cp)
+                if ch not in chinese_to_simplified:
+                    chinese_to_simplified[ch] = list()
+                chinese_to_simplified[ch].append(simp)
         else:
             continue
     h.close()
