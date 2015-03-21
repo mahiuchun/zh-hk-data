@@ -46,13 +46,13 @@ def do_mandrain():
         if not line or line.startswith('#'):
             continue
         fields = line.split()
-        if fields[1] != 'kHanyuPinyin':
+        if fields[1] != 'kMandarin':
             continue
         cp = int('0x'+fields[0][2:], 16)
         if cp > sys.maxunicode:
             continue
         ch = unichr(cp)
-        mandarin = fields[2].split(':')[1].split(',')
+        mandarin = fields[2].split()
         chinese_to_mandarin[ch] = mandarin
     h.close()
     chinese_to_mandarin_json = json.dumps(chinese_to_mandarin, ensure_ascii=False, sort_keys=True)
