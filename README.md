@@ -9,7 +9,7 @@ libcangjie-table.txt is from
 https://github.com/Cangjians/libcangjie/blob/master/data/table.txt
 
 ## Cantonese
-[see here](JyutpingSources.md)
+[see here](CantoneseSources.md)
 
 ## Mandarin
 Unihan_Readings.txt is from
