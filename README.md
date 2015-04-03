@@ -8,9 +8,8 @@ in Web pages.
 libcangjie-table.txt is from
 https://github.com/Cangjians/libcangjie/blob/master/data/table.txt
 
-## Jyutping
-cantonese-syllables-characters.json is from
-https://github.com/siuying/cantonese-syllables/blob/master/data/characters.json
+## Cantonese
+[see here](blob/master/JyutpingSources.md)
 
 ## Mandarin
 Unihan_Readings.txt is from
