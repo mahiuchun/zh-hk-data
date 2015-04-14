@@ -1,8 +1,8 @@
 # Data Sources of Chinese (HK) Helper
 
 ## Introduction
-`convert.py` converts data from various sources to `*.js` that can be included
-in Web pages.
+`convert_{cangjie,jyutping,mandarin,variants}.py` converts data from various sources to `*.js`
+that can be included in Web pages.
 
 ## Cangjie
 libcangjie-table.txt is from
